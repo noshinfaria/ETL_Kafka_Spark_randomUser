@@ -69,8 +69,8 @@ def create_spark_connection():
     try:
         s_conn = SparkSession.builder \
             .appName('SparkDataStreaming') \
-            .config('spark.jars.packages', "com.datastax.spark:spark-cassandra-connector_2.13:3.4.1,"
-                                           "org.apache.spark:spark-sql-kafka-0-10_2.13:3.4.1") \
+            .config('spark.jars.packages', "com.datastax.spark:spark-cassandra-connector_2.12:3.4.1,"
+                                           "org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.5") \
             .config('spark.cassandra.connection.host', 'localhost') \
             .getOrCreate()
 
@@ -146,6 +146,7 @@ if __name__ == "__main__":
         if session is not None:
             create_keyspace(session)
             create_table(session)
+            # insert_data(session)
 
             logging.info("Streaming is being started...")
 
